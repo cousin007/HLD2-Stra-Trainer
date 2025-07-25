@@ -1,3 +1,4 @@
+<!-- Version 062025 -->
 <head>
     <style>
         /* latin */
@@ -15,7 +16,7 @@
 
 <body style="background-color: #525150;" onload="init()">
     <canvas id="my_canvas" width="480" height="320" style="background-color:#363434; display: block; margin: auto; margin-top: 50px;"></canvas>
-    <p>ver. 2024.11.8</p>
+    <p>ver. 2025.07.25</p>
 </body>
 
 
@@ -53,6 +54,7 @@ const stratagems = [
 {name: "MLS-4X Commando", path: "7/78/Commando_Stratagem_Icon.png", sequence: [83,65,87,83,68]},
 {name: "RS-422 Railgun", path: "3/35/Railgun_Stratagem_Icon.png", sequence: [83,68,83,87,65,68]},
 {name: "FAF-14 Spear", path: "5/54/Spear_Stratagem_Icon.png", sequence: [83,83,87,83,83]},
+{name: "StA-X3 W.A.S.P. Launcher", path: "/a/af/StA-X3_W.A.S.P._Launcher_Stratagem_Icon.png", sequence: [83,83,87,83,68]},
 {name: "Orbital Gatling Barrage", path: "f/f6/Orbital_Gatling_Barrage_Stratagem_Icon.png", sequence: [68,83,65,87,87]},
 {name: "Orbital Airburst Strike", path: "2/28/Orbital_Airburst_Strike_Stratagem_Icon.png", sequence: [68,68,68]},
 {name: "Orbital 120mm HE Barrage", path: "4/40/Orbital_120mm_HE_Barrage_Stratagem_Icon.png", sequence: [68,68,83,65,68,83]},
@@ -69,6 +71,7 @@ const stratagems = [
 {name: "Eagle Smoke Strike", path: "0/05/Eagle_Smoke_Strike_Stratagem_Icon.png", sequence: [87,68,87,83]},
 {name: "Eagle 110mm Rocket Pods", path: "e/ef/Eagle_110mm_Rocket_Pods_Stratagem_Icon.png", sequence: [87,68,87,65]},
 {name: "Eagle 500kg Bomb", path: "e/e5/Eagle_500kg_Bomb_Stratagem_Icon.png", sequence: [87,68,83,83,83]},
+{name: "M-102 Fast Recon Vehicle", path: "/0/00/M-102_Fast_Recon_Vehicle_Stratagem_Icon.png", sequence: [65,83,68,83,68,83,87]},
 {name: "Orbital Precision Strike", path: "2/2a/Orbital_Precision_Strike_Stratagem_Icon.png", sequence: [68,68,87]},
 {name: "Orbital Gas Strike", path: "c/cd/Orbital_Gas_Strike_Stratagem_Icon.png", sequence: [68,68,83,68]},
 {name: "Orbital EMS Strike", path: "1/16/Orbital_EMS_Strike_Stratagem_Icon.png", sequence: [68,68,65,83]},
@@ -76,17 +79,19 @@ const stratagems = [
 {name: "E/MG-101 HMG Emplacement", path: "0/03/HMG_Emplacement_Stratagem_Icon.png", sequence: [83,87,65,68,68,65]},
 {name: "FX-12 Shield Generator Relay", path: "e/e4/Shield_Generator_Relay_Stratagem_Icon.png", sequence: [83,83,65,68,65,68]},
 {name: "A/ARC-3 Tesla Tower", path: "8/8f/Tesla_Tower_Stratagem_Icon.png", sequence: [83,87,68,87,65,68]},
+{name: "E/GL-21 Grenadier Battlement", path: "/3/3f/GL-21_Grenadier_Battlement_Stratagem_Icon.png", sequence: [83,68,83,65,68]},
 {name: "MD-6 Anti-Personnel Minefield", path: "b/bb/Anti-Personnel_Minefield_Stratagem_Icon.png", sequence: [83,65,87,68]},
 {name: "B-1 Supply Pack", path: "6/61/Supply_Pack_Stratagem_Icon.png", sequence: [83,65,83,87,87,83]},
 {name: "GL-21 Grenade Launcher", path: "c/cf/Grenade_Launcher_Stratagem_Icon.png", sequence: [83,65,87,65,83]},
 {name: "LAS-98 Laser Cannon", path: "c/c3/Laser_Cannon_Stratagem_Icon.png", sequence: [83,65,83,87,65]},
-{name: "MD-I4 Incendiary Mines", path: "a/a9/Incendiary_Minefield_Stratagem_Icon.png", sequence: [83,65,65,83]},
+{name: "MD-I4 Incendiary Mines", path: "/4/40/Incendiary_Mines_Stratagem_Icon.png", sequence: [83,65,65,83]},
 {name: "AX/LAS-5 Guard Dog Rover", path: "6/6f/Guard_Dog_Rover_Stratagem_Icon.png", sequence: [83,87,65,87,68,68]},
 {name: "SH-20 Ballistic Shield Backpack", path: "3/37/Ballistic_Shield_Backpack_Stratagem_Icon.png", sequence: [83,65,83,83,87,65]},
 {name: "ARC-3 Arc Thrower", path: "1/10/Arc_Thrower_Stratagem_Icon.png", sequence: [83,68,83,87,65,65]},
 {name: "MD-17 Anti-Tank Mines", path: "b/ba/MD-17_Anti-Tank_Mines_Stratagem_Icon.png", sequence: [83,65,87,87]},
 {name: "LAS-99 Quasar Cannon", path: "8/87/Quasar_Cannon_Stratagem_Icon.png", sequence: [83,83,87,65,68]},
 {name: "SH-32 Shield Generator Pack", path: "9/99/Shield_Generator_Pack_Stratagem_Icon.png", sequence: [83,87,65,68,65,68]},
+{name: "MD-8 Gas Mines", path: "/1/13/Gas_Minefield_Stratagem_Icon.png", sequence: [83,65,65,68]},
 {name: "A/MG-43 Machine Gun Sentry", path: "5/5a/Machine_Gun_Sentry_Stratagem_Icon.png", sequence: [83,87,68,68,87]},
 {name: "A/G-16 Gatling Sentry", path: "2/28/Gatling_Sentry_Stratagem_Icon.png", sequence: [83,87,68,65]},
 {name: "A/M-12 Mortar Sentry", path: "a/ad/Mortar_Sentry_Stratagem_Icon.png", sequence: [83,87,68,68,83]},
@@ -96,8 +101,22 @@ const stratagems = [
 {name: "A/M-23 EMS Mortar Sentry", path: "a/a8/AM-23_EMS_Mortar_Sentry_Stratagem_Icon.png", sequence: [83,87,68,83,68]},
 {name: "EXO-45 Patriot Exosuit", path: "3/30/EXO-45_Patriot_Exosuit_Stratagem_Icon.png", sequence: [65,83,68,87,65,83,83]},
 {name: "EXO-49 Emancipator Exosuit", path: "8/82/EXO-49_Emancipator_Exosuit_Stratagem_Icon.png", sequence: [65,83,68,87,65,83,87]},
+{name: "AX/ARC-3 \"Guard Dog\" K-9", path: "/c/ca/AX_ARC-3_\"Guard_Dog\"_K-9_Stratagem_Icon.png", sequence: [83,87,65,87,68,65]},
 {name: "TX-41 Sterilizer", path: "2/29/Sterilizer_Stratagem_Icon.png", sequence: [83,65,87,83,65]},
-{name: "AX/TX-13 Guard Dog Dog Breath", path: "2/20/Guard_Dog_Dog_Breath_Stratagem_Icon.png", sequence: [83,87,65,87,68,87]}
+{name: "AX/TX-13 Guard Dog Dog Breath", path: "2/20/Guard_Dog_Dog_Breath_Stratagem_Icon.png", sequence: [83,87,65,87,68,87]},
+{name: "SH-51 Directional Shield", path: "/b/b7/SH-51_Directional_Shield_Stratagem_Icon.png", sequence: [83,87,65,68,87,87]},
+{name: "E/AT-12 Anti-Tank Emplacement", path: "/6/62/E_AT-12_Anti-Tank_Emplacement_Stratagem_Icon.png", sequence: [83,87,65,68,68,68]},
+{name: "A/FLAM-40 Flame Sentry", path: "/0/0e/A_FLAM-40_Flame_Sentry_Stratagem_Icon.png", sequence: [83,87,68,83,87,87]},
+{name: "B-100 Portable Hellbomb", path: "/a/aa/Portable_Hellbomb_Stratagem_Icon.png", sequence: [83,68,87,87,87]},
+{name: "LIFT-860 Hover Pack", path: "/5/5d/Hover_Pack_Stratagem_Icon.png", sequence: [83,87,87,83,65,68]},
+{name: "CQC-1 One True Flag", path: "/9/9f/CQC-1_One_True_Flag_Stratagem_Icon.png", sequence: [83,65,68,68,87]},
+{name: "GL-52 De-Escalator", path: "/8/87/GL-52_De-Escalator_Stratagem_Icon.png", sequence: [65,68,87,65,68]},
+{name: "AX/ARC-3 \"Guard Dog\" K-9", path: "/c/ca/AX_ARC-3_\"Guard_Dog\"_K-9_Stratagem_Icon.png", sequence: [83,87,65,87,68,65]},
+{name: "A/LAS-98 Laser Sentry", path: "/5/57/A_LAS-98_Laser_Sentry_Stratagem_Icon.png", sequence: [83,87,68,83,87,68]},
+{name: "LIFT-182 Warp Pack", path: "/2/29/LIFT-182_Warp_Pack_Stratagem_Icon.png", sequence: [83,65,68,83,65,68]},
+{name: "Reinforce", path: "/5/5c/Reinforce_Stratagem_Icon.png", sequence: [87,83,68,65,87]},
+{name: "Resupply", path: "/6/64/Resupply_Stratagem_Icon.png", sequence: [83,83,87,68]},
+{name: "Hellbomb", path: "/a/a0/Hellbomb_Stratagem_Icon.png", sequence: [83,87,65,83,87,68,83,87]},
 ];
 
 
