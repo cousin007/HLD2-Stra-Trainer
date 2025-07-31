@@ -116,7 +116,7 @@ const stratagems = [
 {name: "LIFT-182 Warp Pack", path: "/2/29/LIFT-182_Warp_Pack_Stratagem_Icon.png", sequence: [83,65,68,83,65,68]},
 {name: "Reinforce", path: "/5/5c/Reinforce_Stratagem_Icon.png", sequence: [87,83,68,65,87]},
 {name: "Resupply", path: "/6/64/Resupply_Stratagem_Icon.png", sequence: [83,83,87,68]},
-{name: "Hellbomb", path: "/a/a0/Hellbomb_Stratagem_Icon.png", sequence: [83,87,65,83,87,68,83,87]},
+{name: "Hellbomb", path: "/a/a0/Hellbomb_Stratagem_Icon.png", sequence: [83,87,65,83,87,68,83,87]}
 ];
 
 
@@ -144,23 +144,24 @@ function genArrow(stra_index) {
 
 }
 
-// Calculate score
-var round = 0;
-var score = "00.000";
-var starttime = Date.now();
+// Generate countdown bar
+const maxProgress = 100; // 100%
+const animateDuration = 2000; // milliseconds
+let progress = 0;
+let animateStarttime = null;
 
-function calScore() {
-    let endtime = Date.now();
-    timediff = endtime - starttime;
-    starttime = endtime;
-    
-    s = new Date(timediff).getSeconds();
-    ms = new Date(timediff).getMilliseconds();
-    score = s + "." + ms;
-    round++; 
+function animateCountdownBar(timestamp) {
+    if (!animateStarttime) animateStarttime = timestamp;
+    let elapsed = timestamp - animateStarttime;
 
+    // Choose min value between maxProgress and elapsed time
+    progress = Math.min((elapsed / animateDuration) * maxProgress, maxProgress);
+    drawCountdownBar();
+
+    if (progress < maxProgress) {
+        requestAnimationFrame(animateCountdownBar);
+    } 
 }
-
 
 //***********************//
 //      Rendering        //
@@ -214,13 +215,29 @@ function drawTitleAndIcon(stra_index) {
 }
 
 // Draw score
+var success = 0;
+var failure = 0;
+
 function drawScore() {
     ctx.filter = "brightness(100%)";
     ctx.font = "14px Quantico";
     ctx.textAlign = "left";
-    ctx.fillText("Round: " + round + "  Time: " + score, 10, 20);
+    ctx.fillText("Success: " + success + "  Failure: " + failure, 10, 20);
 }
 
+//Draw countdown bar
+const barWidth = 250;
+const barHeight = 5;
+
+function drawCountdownBar() {
+    ctx.filter = "brightness(80%)";
+    if (progress < maxProgress) {
+        ctx.fillStyle = "#e5e5e5"; // Green for success
+    } else {
+        ctx.fillStyle = "#f57373"; // Red for failure
+    }
+    ctx.fillRect(canvas.width/2-125, canvas.height/2+100, (progress/maxProgress) * barWidth, barHeight);
+}
 
 //***********************//
 //       Handling        //
@@ -253,7 +270,11 @@ function keydownHandler(e) {
 
     // Finished, new game
     if (arrows[arrows.length-1].state) {
-        calScore();
+        if (progress < maxProgress) {
+            success++; 
+        } else {
+            failure++;
+        }
         startGame();
     }
 }
@@ -262,10 +283,15 @@ function keydownHandler(e) {
 function startGame() {
     // Random pick
     rand = Math.floor(Math.random() * stratagems.length);
-
     drawTitleAndIcon(rand);
-    drawScore();
     genArrow(rand);
+
+    drawScore();
+
+    // Start countdown
+    progress = 0;
+    animateStarttime = null;
+    requestAnimationFrame(animateCountdownBar);
 }
 
 // Initial setup
@@ -279,18 +305,6 @@ function init() {
     fontFile.load().then( () => {
         startGame();
     })
-
-    // Assure arrow icon loaded
-    // var flag_arrow = 0;
-    // img_arrows.forEach((arrow) => {
-    //     arrow.onload = () => {
-    //         flag_arrow++;
-
-    //         if (flag_arrow === img_arrows.length) {
-    //             startGame();
-    //         }
-    //     }
-    // })
 }
 
 
